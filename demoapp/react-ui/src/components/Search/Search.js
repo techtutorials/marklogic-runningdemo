@@ -15,20 +15,17 @@ import requireAuth from '../requireAuth';
 
 const useStyles = makeStyles({
     root: {
-        flexGrow:1
+        flexGrow:1,
+        marginBottom:70
     }
 });
 
 const renderTextField = ({
     input,
     label,
-    meta: { touched, error },
     ...custom
 }) => (
         <TextField
-            hintText={label}
-            floatingLabelText={label}
-            errorText={touched && error}
             {...input}
             {...custom}
             label={label}
@@ -47,6 +44,9 @@ const renderTextField = ({
 const Search = (props) => {
     const classes = useStyles();
     const { handleSubmit } = props;  
+    function clearForm(){
+        document.getElementById("searchKeyword").reset();
+    }
     const searchResults = () => {
         const envelopeArray = []; 
         props.searchResult.result.forEach(element => {
@@ -57,7 +57,7 @@ const Search = (props) => {
     return (
         <div className={classes.root}>
             <div align='center' style={{ marginBottom: 35 }}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                     <fieldset>
                         <Field
                             name="searchTerm"
@@ -65,6 +65,7 @@ const Search = (props) => {
                             component={renderTextField}
                             autoComplete="none"
                             label="Search"
+                            onFocus="clearForm"
                         />
                     </fieldset>
                     <div>{props.errorMessage}</div>
@@ -73,11 +74,11 @@ const Search = (props) => {
             <div>
                 {props.searchResult ? (
                     <div>
-                        <Grid container style={{ padding: 10, marginLeft: 0, flexGrow:1 }}>
-                            <Grid container xs={12} sm={2} >
+                        <Grid container style={{ padding: 10, marginLeft: 0, flexGrow:1, }}>
+                            <Grid item xs={3} >
                                    {searchResults().length > 0 && <SearchLeftBar />}
                             </Grid>
-                            <Grid container xs={12} sm={10} >
+                            <Grid item xs={9} >
                                     {
                                         searchResults()
                                     }

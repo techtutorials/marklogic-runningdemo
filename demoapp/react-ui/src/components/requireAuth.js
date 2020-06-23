@@ -15,10 +15,10 @@ export default ChildComponent => {
 
     shouldNavigateAway() {
       if (!this.props.auth) {
-        console.log("111111111111111111111111111111111")
-        console.log(this.props)
-        console.log(this.props.history)
-        console.log(this.props.history.push('/'))
+        // console.log("111111111111111111111111111111111")
+        // console.log(this.props)
+        // console.log(this.props.history)
+        // console.log(this.props.history.push('/'))
 
         this.props.history.push('/');
       }
@@ -30,8 +30,8 @@ export default ChildComponent => {
   }
 
   function mapStateToProps(state) {
-      console.log("XXXXXXXXXXXXXXXXXXXXX")
-      console.log(state.auth.isAuthenticated)
+      // console.log("XXXXXXXXXXXXXXXXXXXXX")
+      // console.log(state.auth.isAuthenticated)
     return { auth: state.auth.isAuthenticated };
   }
 

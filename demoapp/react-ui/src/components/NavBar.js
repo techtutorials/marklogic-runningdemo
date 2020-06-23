@@ -157,12 +157,12 @@ export default function NavBar() {
         <div className={classes.grow}>
             <AppBar position="static" style={{ background: '#ffffff' }}>
                 <Toolbar>
-                    <Typography variant='title' color='inherit'>
+                    <Typography  color='inherit'>
                         <img src="images/dupont-logo.png" width="120" alt="DuPont Logo" />
                     </Typography>
                     <div className={classes.grow} />
                     
-                    <Typography variant='title' color='inherit' >
+                    <Typography  color='inherit' >
                         <Link href="/" color='secondary'> Home |&nbsp;</Link>
                         <Link href="search" color='secondary'> Search &nbsp;</Link>
                     </Typography>
@@ -194,7 +194,6 @@ export default function NavBar() {
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
-                            color="#333333"
                         >
                             <AccountCircle />
                         </IconButton>
@@ -205,7 +204,6 @@ export default function NavBar() {
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
-                            color="#333333"
                         >
                             <MoreIcon />
                         </IconButton>

@@ -8,8 +8,8 @@ const INITIAL_STATE = {
 const searchReducer = (state = INITIAL_STATE, action)=> {
   switch (action.type) {
     case SEARCH_TERM:
-        console.log("=========Inside Search Reducer=========");
-        console.log(action.payload)
+        // console.log("=========Inside Search Reducer=========");
+        // console.log(action.payload)
       return { ...state, searchResult: action.payload };
     case SEARCH_ERROR:
       return { ...state, errorMessage: action.payload };

@@ -14,6 +14,7 @@ import { CookiesProvider } from 'react-cookie';
 import reduxlogger from 'redux-logger';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import getJWTToken from './helper/GetJWTToken'
+import ArticleDetails from './components/Search/ArticleDetails';
 
 const store = createStore(
   rootReducer,
@@ -23,7 +24,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(reduxThunk,reduxlogger))
 );
 
-console.log('initial state', store.getState());
+// console.log('initial state', store.getState());
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,6 +34,7 @@ ReactDOM.render(
         <App>
           <Route path="/" exact component={Auth} />
           <Route path="/search" component={Search} />
+          <Route path="/articleDetails" component={ArticleDetails} />
         </App>
       </BrowserRouter>
       </CookiesProvider>
