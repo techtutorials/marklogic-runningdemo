@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: 5,
-    },
+	root: {
+		marginTop: 5,
+	},
 }));
 
 const getParams = function (url) {
@@ -23,11 +23,15 @@ const getParams = function (url) {
 };
 
 export default function ArticleDetails() {
-    const classes = useStyles();
+	const classes = useStyles();
 
-    return (
-        <Typography className={classes.root}>
-            {JSON.parse(localStorage.getItem(`articleDetails-${getParams(window.location.href).uuid}`))}
-        </Typography>
-    );
+	return (
+		<Typography className={classes.root}>
+			{JSON.parse(localStorage.getItem(`articleDetails-${getParams(window.location.href).uuid}`)).map(element => (
+				<p>
+					{element}
+				</p>
+			))}
+		</Typography>
+	);
 }

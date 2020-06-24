@@ -29,7 +29,14 @@ export const searchKeyword = (formProps, callback) => async dispatch => {
     // console.log(responseArray.length)
     responseArray.forEach(element => {
       let xmlResponse = element.content
+     
+      // console.log("xmlResponse.......................")
+      // console.log(xmlResponse)
       jsonObj = XMLtoObject(xmlResponse)
+      console.log("jsonResponse.......................")
+      console.log(jsonObj)
+     
+      
       resultArray.push(jsonObj)
     });
     // console.log(resultArray)
@@ -65,7 +72,12 @@ export const searchTopic = (searchTerm, callback) => async dispatch => {
     // console.log(responseArray.length)
     responseArray.forEach(element => {
       let xmlResponse = element.content
+      // console.log("xmlResponse.......................")
+      // console.log(xmlResponse)
       jsonObj = XMLtoObject(xmlResponse)
+      // console.log("jsonResponse.......................")
+      // console.log(jsonObj)
+     
       resultArray.push(jsonObj)
     });
     // console.log(resultArray)
