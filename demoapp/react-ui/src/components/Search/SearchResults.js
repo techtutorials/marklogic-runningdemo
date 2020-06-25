@@ -12,8 +12,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchTopic from './SearchTopic'
 import Divider from '@material-ui/core/Divider';
-import MoreDetailsLink from './MoreDetailsLink'
-import Highlighter from "react-highlight-words";
+import ArticleDetailsDialog from './ArticlesDetailsDialog'
+
 
 const useStyles = makeStyles({
     root: {
@@ -49,23 +49,24 @@ const SearchResults = (props) => {
         });
         return authorArr
     }
-
+    
     const getArticleDetails = () => {
         const detailsArr = []
-
         envelope.instance[0].article[0].div[0].p.forEach(element => {
-
             if (typeof element === 'string') {
-                detailsArr.push(element + ' ');
-            } else if (typeof element === 'object') {
-                const tempstr = JSON.stringify(element)
-                if (/ent:.*/.test(tempstr)) {
-                    // Object.values(element)[1][0]._
-                    // element._.replace(/\n\t\t\t\t\t\n\t\t\t\t\t/, Object.values(element)[1][0]._)
-                    detailsArr.push(element._.replace(/\n\t\t\t\t\t\n\t\t\t\t\t/, Object.values(element)[1][0]._))
+                detailsArr.push('<p>'+ element + '</p>');
+            } else if (typeof element === 'object' && /ent:.*/.test(JSON.stringify(element))) {
+                let highlightedText = Object.values(element)[1][0]._; 
+                if(highlightedText){
+                    highlightedText = '<mark>'  + highlightedText + '</mark>'
+                    // console.log('Highlited Text', highlightedText)
                 }
+                detailsArr.push((
+                    '<p>' + element._.replace(/\n\t\t\t\t\t\n\t\t\t\t\t/, highlightedText) + '</p>'
+                ))
             }
         });
+
         return detailsArr
     }
     return (
@@ -92,7 +93,7 @@ const SearchResults = (props) => {
                 <Typography variant="body2" color="textSecondary" component="p">
                     <SearchTopic props={getTopics()} />
                 </Typography>
-                <MoreDetailsLink props={getArticleDetails()} uuid={envelope.headers[0].uuid[0]} />
+                <ArticleDetailsDialog props={{ title: envelope.headers[0].articleTitle, details: getArticleDetails() }} />
             </CardContent>
         </Card>
     )
