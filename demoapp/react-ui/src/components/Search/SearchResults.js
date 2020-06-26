@@ -23,6 +23,10 @@ const useStyles = makeStyles({
     }
 });
 
+const toolTip  = (hightledText)=>{
+    return '\<a href="www.google.com" \>'+ hightledText +'\</a\>'
+}
+
 const SearchResults = (props) => {
     console.log(props)
     const { envelope } = props.props;
@@ -58,7 +62,9 @@ const SearchResults = (props) => {
             } else if (typeof element === 'object' && /ent:.*/.test(JSON.stringify(element))) {
                 let highlightedText = Object.values(element)[1][0]._; 
                 if(highlightedText){
-                    highlightedText = '<mark>'  + highlightedText + '</mark>'
+                    //highlightedText = '<mark data-tip=' + toolTip(highlightedText) + '>' + highlightedText + '</mark>' 
+                    highlightedText = `<mark data-tip=''>${highlightedText}</mark>` 
+            
                     // console.log('Highlited Text', highlightedText)
                 }
                 detailsArr.push((

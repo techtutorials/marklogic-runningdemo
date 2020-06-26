@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import parse from 'html-react-parser';
+import ReactTooltip from 'react-tooltip'
 
 
 
@@ -60,6 +61,26 @@ export default function ArticlesDetailsDialog(props) {
                 </AppBar>
                 <Typography variant="body2" color="textSecondary" component="p" style={{ margin: 10 }}>
                 <div>{parse(props.props.details.join(''))}</div>
+                <ReactTooltip 
+                    clickable='true' 
+                    multiline='true' 
+                    html='true'
+                    textColor='#ffffff' 
+                    wrapper='div'
+                    place='right'
+                    getContent={() => { 
+                    return `
+                    <p>A covalent bond, also called a molecular bond, is a chemical bond
+                    that involves the sharing of electron pairs between atoms.</p>
+                    These electron pairs are known as shared pairs or bonding pairs, 
+                    and the stable balance of attractive and repulsive forces between atoms,
+                    when they share electrons, is known as covalent bonding.</p>
+                    <p>For many molecules, the sharing of electrons allows each atom to attain
+                    the equivalent of a full outer shell, corresponding to a stable electronic
+                    configuration. In organic chemistry, covalent bonds are much more common
+                    than ionic bonds.</p>
+                    ` 
+                }} />
                 </Typography>
             </Dialog>
         </div>
